@@ -1,7 +1,7 @@
 import java.util.Locale;
 
 public class Segment {
-    public Point getA() {
+    public Vec2 getA() {
         return a;
     }
 
@@ -9,7 +9,7 @@ public class Segment {
         this.a = a;
     }*/
 
-    public Point getB() {
+    public Vec2 getB() {
         return b;
     }
 
@@ -17,13 +17,13 @@ public class Segment {
         this.b = b;
     }*/
 
-    public Segment(Point a, Point b) {
+    public Segment(Vec2 a, Vec2 b) {
         this.a = a;
         this.b = b;
     }
 
-    private Point a;
-    private Point b;
+    private final Vec2 a;
+    private final Vec2 b;
 
     public double length() {
         double x1 = this.a.x;
@@ -39,7 +39,6 @@ public class Segment {
 
     public String toSvg() {
         String output;
-        //<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
         output = String.format(Locale.ENGLISH,
                          "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\"" +
                                "style=\"stroke:rgb(0,0,0);stroke-width:2\" />",
@@ -57,16 +56,16 @@ public class Segment {
         return new double[] {a, b};
     }
 
-    public static Segment[] perpendicular(Segment segment, Point point) {
+    public static Segment[] perpendicular(Segment segment, Vec2 vec2) {
         double a;
         a = (segment.getA().y - segment.getB().y);
         a /= (segment.getA().x - segment.getB().x);
         double b;
         a=-1/a;
-        b=point.y-a*point.x;
+        b= vec2.y-a* vec2.x;
 
-        double x0 = point.x;
-        double y0 = point.y;
+        double x0 = vec2.x;
+        double y0 = vec2.y;
         double r = segment.length();
 
         double root = Math.sqrt(-y0*y0+(2*a*x0+2*b)*y0-a*a*x0*x0-2*a*b*x0+(a*a+1)*r*r-b*b);
@@ -75,8 +74,8 @@ public class Segment {
         double x2 = (root+a*y0+x0-a*b)/(a*a+1);
         double y2 = (a*root+a*a*y0+a*x0+b)/(a*a+1);
 
-        return new Segment[]{new Segment(point, new Point(x1,y1)),
-                             new Segment(point, new Point(x2,y2))};
+        return new Segment[]{new Segment(vec2, new Vec2(x1,y1)),
+                             new Segment(vec2, new Vec2(x2,y2))};
     }
 
 }

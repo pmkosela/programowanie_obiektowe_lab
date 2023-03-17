@@ -16,7 +16,7 @@ public class SvgScene {
             file = new FileWriter(path);
             file.write("<html> <body> <svg width=\"1000\" height=\"1000\">\n");
             for (Shape p: this.shapes) {
-                file.write(p.toSvg() + "\n");
+                file.write(p.toSvg("") + "\n");
             }
             file.write("</svg>\n</body>\n</html>");
             file.close();

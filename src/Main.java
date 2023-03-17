@@ -9,5 +9,7 @@ public class Main {
 
         SolidFillShapeDecorator polyDecorator = new SolidFillShapeDecorator(poly, "#000000");
         SolidFillShapeDecorator ellipseDecorator = new SolidFillShapeDecorator(ellipse, "#FFFFFF");
+        StrokeShapeDecorator polyDecorator2 = new StrokeShapeDecorator(polyDecorator, "red", 12);
+        StrokeShapeDecorator ellipseDecorator2 = new StrokeShapeDecorator(ellipseDecorator,"red",3);
     }
 }

@@ -72,19 +72,33 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        save("people.bin");
+        try {
+            Person alicja = Person.loadPerson("/tmp/test/test_same_osoby/Alicja Stefanek.txt");
+            System.out.println(alicja);
+            Person alicja2 = Person.loadPerson("/tmp/test/test_same_osoby/Alicja Stefanek2.txt");
+            System.out.println(alicja2);
+        } catch (AmbigiousPersonException e){
+            System.out.println(e.getMessage());
+            System.out.println(e.path1);
+            System.out.println(e.path2);
+        }
 
-        load("people.bin");
+
+        //save("people.bin");
+
+        //load("people.bin");
         /*
         try {
             Person mirek = new Person("Mirek",
                     LocalDate.of(2130, 5, 7),
                     LocalDate.of(1990, 8, 1));
+
             System.out.println(mirek);
         } catch (NegativeLifespanException e) {
             e.printStackTrace();
             System.err.println(e.lifespan);
         } catch (DateTimeException e) {
+
             System.err.println(e.getMessage());
             System.out.println("DT EXC");
         } catch (Exception e) {
@@ -92,6 +106,7 @@ public class Main {
         } finally {
             System.out.println("FINALLY");
         }
+
          */
 
     }

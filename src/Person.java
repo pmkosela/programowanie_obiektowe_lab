@@ -1,12 +1,15 @@
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Set;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Person implements Serializable {
     private String name;
     private LocalDate birth, death;
     private Person parents[] = new Person[2];
+
+    static private List<PersonFile> nameFiles = new ArrayList<PersonFile>();
 
     public Person(String name, LocalDate birth) {
         this(name, birth, null);
@@ -57,4 +60,39 @@ public class Person implements Serializable {
             }
         }
     }
+    public static Person loadPerson(String path) throws AmbigiousPersonException {
+        File file = new File(path);
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+            //} catch (Exception e) { //O TU BYŁO!
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("Nie znaleziono pliku: " + path);
+            return null;
+        }
+        String name = scanner.nextLine();
+        for (PersonFile i : nameFiles) {
+            if (i.name.equals(name) && !i.path.equals(path)) {
+                throw new AmbigiousPersonException(name, i.path, path);
+            }
+        }
+        String tmp = scanner.nextLine();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate birth = LocalDate.parse(tmp, format);
+        LocalDate death = null;
+        Person loadedPerson;
+        if (scanner.hasNextLine()) {
+            tmp = scanner.nextLine();
+            death = LocalDate.parse(tmp, format);
+            loadedPerson = new Person(name, birth, death);
+        } else {
+            loadedPerson = new Person(name, birth);
+        }
+        PersonFile someone = new PersonFile(name, path);
+        nameFiles.add(someone);
+        scanner.close();
+        return loadedPerson;
+    }
+
+
 }

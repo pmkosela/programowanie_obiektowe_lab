@@ -1,6 +1,6 @@
 package org.example.food_shop.src.main.java;
 
-import pl.umcs.oop.lec7.shop.Product;
+import org.example.shop.src.main.java.pl.umcs.oop.lec7.shop.Product;
 
 import java.math.BigDecimal;
 

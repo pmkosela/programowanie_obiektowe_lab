@@ -9,7 +9,7 @@ public class DatabaseConnection {
     }
     public static boolean connect(){
          try{
-             this.connection = DriverManager.getConnection("jdbc:sqlite:shop_data.db");
+             connection = DriverManager.getConnection("jdbc:sqlite:shop_data.db");
          } catch (SQLException exception) {
              exception.printStackTrace();
          }
@@ -18,7 +18,7 @@ public class DatabaseConnection {
 
     public static boolean disconnect(){
         try{
-            this.connection.close();
+            connection.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

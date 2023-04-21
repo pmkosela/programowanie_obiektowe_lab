@@ -1,7 +1,7 @@
 package org.example.food_shop.src.main.java;
 
-import pl.umcs.oop.lec7.shop.Account;
-import pl.umcs.oop.lec7.shop.Cart;
+import org.example.shop.src.main.java.pl.umcs.oop.lec7.shop.Account;
+import org.example.shop.src.main.java.pl.umcs.oop.lec7.shop.Cart;
 
 import java.math.BigDecimal;
 

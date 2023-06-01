@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.umcs.oop.gui_client.HelloController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+  </rowConstraints>
+   <children>
+      <TextArea fx:id="outputArea" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" />
+      <TextField fx:id="inputField" GridPane.rowIndex="1" />
+      <Button fx:id="sendButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSendButtonClicked" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="sendFileButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Send file" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <ListView fx:id="clientList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowSpan="3" />
+      <ProgressBar fx:id="fileProgressBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

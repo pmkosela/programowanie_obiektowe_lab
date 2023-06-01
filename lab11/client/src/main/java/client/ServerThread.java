@@ -1,3 +1,5 @@
+package client;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Path;
@@ -6,6 +8,12 @@ public class ServerThread extends Thread {
     private Socket socket;
     private PrintWriter writer;
     private boolean running;
+    private ClientReceiver clientReceiver;
+
+    public void setClientReceiver(ClientReceiver clientReceiver) {
+        this.clientReceiver = clientReceiver;
+    }
+
 
     public ServerThread(String address, int port) {
         try {
@@ -23,11 +31,23 @@ public class ServerThread extends Thread {
             writer = new PrintWriter(output, true);
             String message;
             while ((message = reader.readLine()) != null){
-                if(message.startsWith("FI"))
+                if(message.startsWith("FI")) {
                     receiveFile(message.substring(2));
-                else
+                } else {
                     System.out.println(message);
-                //runCommand(message);
+                    //runCommand(message);
+                    if(message.startsWith("BR")){
+                        String sender;
+                        String tmpMessage = "";
+                        String[] arr = message.split(" ");
+                        sender = arr[0];
+                        for(int i = 1; i < arr.length; i++ ){
+                            tmpMessage += arr[i] + " ";
+                        }
+                        sender = sender.substring(2 );
+                        clientReceiver.receiveBroadcast(sender, tmpMessage);
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

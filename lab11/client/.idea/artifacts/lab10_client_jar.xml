@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lab10_client:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab10_client_jar</output-path>
+    <root id="archive" name="lab10_client.jar">
+      <element id="module-output" name="lab10_client" />
+    </root>
+  </artifact>
+</component>

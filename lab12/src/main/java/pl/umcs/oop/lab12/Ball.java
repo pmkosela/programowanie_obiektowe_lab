@@ -50,11 +50,33 @@ public class Ball extends GraphicsItem {
         System.out.println(i);
     }
 
+    public void bounceFromPaddle(double centerOffset) {
+        //moveVector = new Point2D(moveVector.getX(), -moveVector.getY()).PRZEKSZTALCENIE(T).normalize();
+        ++i;
+        System.out.println(i);
+    }
+
     public ExtremePoints extremePoints() {
         Point2D topLeft = new Point2D(x-width/2,y-height/2);
         Point2D bottomLeft = new Point2D(x-width/2,y+height/2);
         Point2D topRight = new Point2D(x+width/2,y-width/2);
         Point2D bottomRight = new Point2D(x+width/2,y+height/2);
         return new ExtremePoints(topLeft,bottomLeft,topRight,bottomRight);
+    }
+
+    public Point2D getTopLeft() {
+        return this.extremePoints().topLeft;
+    }
+
+    public Point2D getBottomLeft() {
+        return this.extremePoints().bottomLeft;
+    }
+
+    public Point2D getTopRight() {
+        return this.extremePoints().topRight;
+    }
+
+    public Point2D getBottomRight() {
+        return this.extremePoints().bottomRight;
     }
 }

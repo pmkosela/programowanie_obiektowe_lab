@@ -41,9 +41,11 @@ public class GameCanvas extends Canvas {
             double diff = (now - lastUpdate)/1_000_000_000.;
             lastUpdate = now;
             ball.updatePosition(diff);
+            // sprawdź czy piłka niszczy cegłę?
             if (shouldBallBounceHorizontally()) ball.bounceHorizontally();
             if (shouldBallBounceVertically()) ball.bounceVertically();
-            if (shouldBallBounceFromPaddle()) ball.bounceVertically();
+            //if (shouldBallBounceFromPaddle()) ball.bounceVertically();
+            if (shouldBallBounceFromPaddle()) ball.bounceFromPaddle(ball.x - paddle.x);
             draw();
         }
 

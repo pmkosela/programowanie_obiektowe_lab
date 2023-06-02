@@ -9,6 +9,8 @@ public class Brick extends GraphicsItem{
     static private int gridCols;
     private Color color;
 
+    public enum CrushType{NoCrush, HorizontalCrush, VerticalCrush};
+
     public static void setGridRows(int gridRows) {
         Brick.gridRows = gridRows;
     }
